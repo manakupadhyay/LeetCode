@@ -7,12 +7,13 @@ Example:
 Given 1->2->3->4, you should return the list as 2->1->4->3.
 */
 
- ListNode* swapPairs(ListNode* head) {
-        if(head==NULL || head->next==NULL)
-            return head;
-        ListNode* remaning = head->next->next;
-        ListNode* newhead = head->next;
-        head->next->next = head;
-        head->next = swapPairs(remaning);
-        return newhead;
-    }
+ListNode *swapPairs(ListNode *head)
+{
+    if (head == NULL || head->next == NULL)
+        return head;
+    ListNode *remaning = head->next->next;
+    ListNode *newhead = head->next;
+    head->next->next = head;
+    head->next = swapPairs(remaning);
+    return newhead;
+}

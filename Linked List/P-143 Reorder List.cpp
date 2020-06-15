@@ -9,31 +9,34 @@ Example 1:
 Given 1->2->3->4, reorder it to 1->4->2->3.
 */
 
- void reorderList(ListNode* head) {
-        if(head==NULL || head->next==NULL)
-            return;
-        ListNode* temp = head;
-        stack<ListNode*> s;
-        while(temp){
-            s.push(temp);
-            temp=temp->next;
-        }
-        temp=head;
-        bool flag=false;
-        while(temp!=s.top()){
-            ListNode* f = temp->next;
-            temp->next=s.top();
-            s.pop();
-            temp->next->next=f;
-            if(temp->next==f){
-                ListNode* af = temp->next;
-                af->next=NULL;
-                flag=true;
-                break;
-            }
-            temp=f;
-        }
-        if(!flag)
-        temp->next=NULL;
-         
+void reorderList(ListNode *head)
+{
+    if (head == NULL || head->next == NULL)
+        return;
+    ListNode *temp = head;
+    stack<ListNode *> s;
+    while (temp)
+    {
+        s.push(temp);
+        temp = temp->next;
     }
+    temp = head;
+    bool flag = false;
+    while (temp != s.top())
+    {
+        ListNode *f = temp->next;
+        temp->next = s.top();
+        s.pop();
+        temp->next->next = f;
+        if (temp->next == f)
+        {
+            ListNode *af = temp->next;
+            af->next = NULL;
+            flag = true;
+            break;
+        }
+        temp = f;
+    }
+    if (!flag)
+        temp->next = NULL;
+}

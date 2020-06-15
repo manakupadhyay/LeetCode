@@ -10,31 +10,34 @@ For k = 3, you should return: 3->2->1->4->5
 
 */
 
-ListNode* reverseKGroup(ListNode* head, int k) {
-       if(head==NULL)
-            return head;
-        int len=0;
-        ListNode* curr = head;
-        while(curr){
-            curr=curr->next;
-            len++;
-            if(len>=k)
-                break;
-        }
-        if(len<k)
-            return head;
-        curr=head;
-        ListNode* forward;
-        ListNode* prev = NULL;
-        int count = k;
-        while( count && curr!=NULL){
-            forward = curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=forward;
-            count--;
-        }
-        if(head!=NULL)
-            head->next=reverseKGroup(forward,k);
-        return prev;
+ListNode *reverseKGroup(ListNode *head, int k)
+{
+    if (head == NULL)
+        return head;
+    int len = 0;
+    ListNode *curr = head;
+    while (curr)
+    {
+        curr = curr->next;
+        len++;
+        if (len >= k)
+            break;
+    }
+    if (len < k)
+        return head;
+    curr = head;
+    ListNode *forward;
+    ListNode *prev = NULL;
+    int count = k;
+    while (count && curr != NULL)
+    {
+        forward = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = forward;
+        count--;
+    }
+    if (head != NULL)
+        head->next = reverseKGroup(forward, k);
+    return prev;
 }

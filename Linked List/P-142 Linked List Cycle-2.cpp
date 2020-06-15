@@ -14,23 +14,26 @@ Output: tail connects to node index 1
 Explanation: There is a cycle in the linked list, where tail connects to the second node.
 */
 
- ListNode *detectCycle(ListNode *head) {
-        if(head==NULL)
-            return head;
-        ListNode* fast=head;
-        ListNode* slow=head;
-        ListNode* entry = head;
-        while(fast && fast->next){
-            slow=slow->next;
-            fast=fast->next->next;
-            if(slow==fast)
+ListNode *detectCycle(ListNode *head)
+{
+    if (head == NULL)
+        return head;
+    ListNode *fast = head;
+    ListNode *slow = head;
+    ListNode *entry = head;
+    while (fast && fast->next)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast)
+        {
+            while (slow != entry)
             {
-               while(slow!=entry){
-                   slow=slow->next;
-                   entry=entry->next;
-               }
-                return entry;
+                slow = slow->next;
+                entry = entry->next;
             }
+            return entry;
         }
-        return NULL;
     }
+    return NULL;
+}
