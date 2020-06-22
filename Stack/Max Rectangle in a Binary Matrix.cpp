@@ -42,12 +42,26 @@ int main()
     cin >> test;
     while (test--)
     {
-        ll size;
-        cin >> size;
-        ll arr[size];
-        for (ll i = 0; i < size; i++)
-            cin >> arr[i];
-        ll max = calculate(arr, size);
+        ll row,col,max=0,ans;
+        cin >> row >> col;
+        ll matrix[row][col];
+        for (ll i = 0; i < row; i++)
+            for(ll j=0;j<col;j++)
+                cin >> matrix[i][j];
+        ll arr[col] = {0};
+       for(ll i =0;i<row;i++)
+       {
+           for(ll j=0;j<col;j++)
+            {
+                if(matrix[i][j]==0)
+                    arr[j]=0;
+                else
+                    arr[j]+=(matrix[i][j]);
+            }
+            ans = calculate(arr,col);
+            if(ans>max)
+                max=ans;
+       }
         cout << max << endl;
     }
     return 0;
